@@ -52,7 +52,7 @@ operator
 - Exception
 
 
-## 執行方式
+## How to run
 
 Refer to [執行說明]
 
