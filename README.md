@@ -1,6 +1,6 @@
 # Airflow DAG - 接受檔案排程dag1
 
-## Infor
+## Info
 某來源系統會在每天在 00:00 UTC+8 時,拋送 record_yyyymmdd.txt 的檔案, 其中
 yyyymmdd 為檔案拋送日(e.g. 今天是 2025/03/24, 檔案名稱則為
 record_20250324.txt)至路徑 /tmp/test/ 底下,請設計一個排程每天接收
