@@ -1,0 +1,254 @@
+[2026-04-24T22:02:15.890+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-24T22:02:15.904+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [queued]>
+[2026-04-24T22:02:15.910+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [queued]>
+[2026-04-24T22:02:15.911+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-04-24T22:02:16.001+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): check_file_task> on 2026-04-22 16:00:00+00:00
+[2026-04-24T22:02:16.006+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1023) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-24T22:02:16.007+0000] {standard_task_runner.py:72} INFO - Started process 1026 to run task
+[2026-04-24T22:02:16.007+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag1', 'check_file_task', 'scheduled__2026-04-22T16:00:00+00:00', '--job-id', '259', '--raw', '--subdir', 'DAGS_FOLDER/dag1.py', '--cfg-path', '/tmp/tmp52yfcqbr']
+[2026-04-24T22:02:16.008+0000] {standard_task_runner.py:105} INFO - Job 259: Subtask check_file_task
+[2026-04-24T22:02:16.028+0000] {task_command.py:467} INFO - Running <TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [running]> on host fed0a0b3e6c1
+[2026-04-24T22:02:16.054+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag1' AIRFLOW_CTX_TASK_ID='check_file_task' AIRFLOW_CTX_EXECUTION_DATE='2026-04-22T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-22T16:00:00+00:00'
+[2026-04-24T22:02:16.054+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2026-04-24T22:02:16.054+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2026-04-24T22:02:16.055+0000] {logging_mixin.py:190} INFO - Current task name:check_file_task state:running start_date:2026-04-24 22:02:15.904530+00:00
+[2026-04-24T22:02:16.055+0000] {logging_mixin.py:190} INFO - Dag name:dag1 and current dag run status:running
+[2026-04-24T22:02:16.055+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-04-24T22:02:16.059+0000] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/dag1.py", line 44, in check_file
+    file_size = os.path.getsize(file_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen genericpath>", line 62, in getsize
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/test/record_20260422.txt'
+[2026-04-24T22:02:16.064+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2026-04-24T22:02:16.064+0000] {logging_mixin.py:190} INFO - Task start:2026-04-24 22:02:15.904530+00:00 end:2026-04-24 22:02:16.064248+00:00 duration:0.159718
+[2026-04-24T22:02:16.064+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): check_file_task> dag:<DAG: dag1> dagrun:<DagRun dag1 @ 2026-04-22 16:00:00+00:00: scheduled__2026-04-22T16:00:00+00:00, state:running, queued_at: 2026-04-24 22:02:13.083229+00:00. externally triggered: False>
+[2026-04-24T22:02:16.064+0000] {logging_mixin.py:190} INFO - Failure caused by [Errno 2] No such file or directory: '/tmp/test/record_20260422.txt'
+[2026-04-24T22:02:16.065+0000] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=dag1, task_id=check_file_task, run_id=scheduled__2026-04-22T16:00:00+00:00, execution_date=20260422T160000, start_date=20260424T220215, end_date=20260424T220216
+[2026-04-24T22:02:16.074+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-04-24T22:02:16.074+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 259 for task check_file_task ([Errno 2] No such file or directory: '/tmp/test/record_20260422.txt'; 1026)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/dag1.py", line 44, in check_file
+    file_size = os.path.getsize(file_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen genericpath>", line 62, in getsize
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/test/record_20260422.txt'
+[2026-04-24T22:02:16.107+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-04-24T22:02:16.120+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-04-24T22:02:16.122+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2026-04-24T22:18:33.350+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-24T22:18:33.359+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [queued]>
+[2026-04-24T22:18:33.362+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [queued]>
+[2026-04-24T22:18:33.364+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-04-24T22:18:33.455+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): check_file_task> on 2026-04-22 16:00:00+00:00
+[2026-04-24T22:18:33.460+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1280) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-24T22:18:33.461+0000] {standard_task_runner.py:72} INFO - Started process 1281 to run task
+[2026-04-24T22:18:33.463+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag1', 'check_file_task', 'scheduled__2026-04-22T16:00:00+00:00', '--job-id', '264', '--raw', '--subdir', 'DAGS_FOLDER/dag1.py', '--cfg-path', '/tmp/tmp7lb87ixl']
+[2026-04-24T22:18:33.464+0000] {standard_task_runner.py:105} INFO - Job 264: Subtask check_file_task
+[2026-04-24T22:18:33.500+0000] {task_command.py:467} INFO - Running <TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [running]> on host fed0a0b3e6c1
+[2026-04-24T22:18:33.562+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag1' AIRFLOW_CTX_TASK_ID='check_file_task' AIRFLOW_CTX_EXECUTION_DATE='2026-04-22T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-22T16:00:00+00:00'
+[2026-04-24T22:18:33.564+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2026-04-24T22:18:33.564+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2026-04-24T22:18:33.564+0000] {logging_mixin.py:190} INFO - Current task name:check_file_task state:running start_date:2026-04-24 22:18:33.359534+00:00
+[2026-04-24T22:18:33.564+0000] {logging_mixin.py:190} INFO - Dag name:dag1 and current dag run status:running
+[2026-04-24T22:18:33.564+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-04-24T22:18:33.577+0000] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/dag1.py", line 52, in check_file
+    raise ValueError('\n'.join(errors))
+ValueError: size < 50 bytes
+[2026-04-24T22:18:33.585+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2026-04-24T22:18:33.585+0000] {logging_mixin.py:190} INFO - Task start:2026-04-24 22:18:33.359534+00:00 end:2026-04-24 22:18:33.584451+00:00 duration:0.224917
+[2026-04-24T22:18:33.586+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): check_file_task> dag:<DAG: dag1> dagrun:<DagRun dag1 @ 2026-04-22 16:00:00+00:00: scheduled__2026-04-22T16:00:00+00:00, state:running, queued_at: 2026-04-24 22:18:29.854299+00:00. externally triggered: False>
+[2026-04-24T22:18:33.586+0000] {logging_mixin.py:190} INFO - Failure caused by size < 50 bytes
+[2026-04-24T22:18:33.586+0000] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=dag1, task_id=check_file_task, run_id=scheduled__2026-04-22T16:00:00+00:00, execution_date=20260422T160000, start_date=20260424T221833, end_date=20260424T221833
+[2026-04-24T22:18:33.613+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-04-24T22:18:33.614+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 264 for task check_file_task (size < 50 bytes; 1281)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/dag1.py", line 52, in check_file
+    raise ValueError('\n'.join(errors))
+ValueError: size < 50 bytes
+[2026-04-24T22:18:33.645+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-04-24T22:18:33.658+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-04-24T22:18:33.659+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2026-04-24T22:25:13.341+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-04-24T22:25:13.351+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [queued]>
+[2026-04-24T22:25:13.355+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [queued]>
+[2026-04-24T22:25:13.356+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-04-24T22:25:13.465+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): check_file_task> on 2026-04-22 16:00:00+00:00
+[2026-04-24T22:25:13.469+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1389) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-04-24T22:25:13.471+0000] {standard_task_runner.py:72} INFO - Started process 1391 to run task
+[2026-04-24T22:25:13.473+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag1', 'check_file_task', 'scheduled__2026-04-22T16:00:00+00:00', '--job-id', '270', '--raw', '--subdir', 'DAGS_FOLDER/dag1.py', '--cfg-path', '/tmp/tmptgf30q60']
+[2026-04-24T22:25:13.474+0000] {standard_task_runner.py:105} INFO - Job 270: Subtask check_file_task
+[2026-04-24T22:25:13.515+0000] {task_command.py:467} INFO - Running <TaskInstance: dag1.check_file_task scheduled__2026-04-22T16:00:00+00:00 [running]> on host fed0a0b3e6c1
+[2026-04-24T22:25:13.549+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag1' AIRFLOW_CTX_TASK_ID='check_file_task' AIRFLOW_CTX_EXECUTION_DATE='2026-04-22T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-22T16:00:00+00:00'
+[2026-04-24T22:25:13.550+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2026-04-24T22:25:13.550+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2026-04-24T22:25:13.551+0000] {logging_mixin.py:190} INFO - Current task name:check_file_task state:running start_date:2026-04-24 22:25:13.352044+00:00
+[2026-04-24T22:25:13.551+0000] {logging_mixin.py:190} INFO - Dag name:dag1 and current dag run status:running
+[2026-04-24T22:25:13.552+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-04-24T22:25:13.562+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-04-24T22:25:13.566+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-04-24T22:25:13.567+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag1, task_id=check_file_task, run_id=scheduled__2026-04-22T16:00:00+00:00, execution_date=20260422T160000, start_date=20260424T222513, end_date=20260424T222513
+[2026-04-24T22:25:13.583+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2026-04-24T22:25:13.584+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2026-04-24T22:25:13.584+0000] {logging_mixin.py:190} INFO - Dag name:dag1 queued_at:2026-04-24 22:25:10.002491+00:00
+[2026-04-24T22:25:13.585+0000] {logging_mixin.py:190} INFO - Task hostname:fed0a0b3e6c1 operator:PythonOperator
+[2026-04-24T22:25:13.611+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-04-24T22:25:13.625+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-04-24T22:25:13.627+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
