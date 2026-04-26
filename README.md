@@ -10,6 +10,7 @@ record_yyyymmdd.txt
 1. size > 50 bytes
 2. header 以外的資料筆數 >0
 3. id 欄位值不重複
+
 若任一條件不符合,則排程失敗並需寄發告警信,信件內容需包含失敗 task 的
 task_id、排程執行日、exception 內容
 若排程執行成功,則將該檔案移至路徑 /tmp/success/底下
